@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TestingWeatherApp</string>
+    <string name="feels_like">Ощущается как:</string>
+    <string name="temp_unit">°C</string>
+    <string name="wind_unit">м/с,</string>
+    <string name="pressure_unit">мм рт. ст.</string>
+    <string name="weather_for_the_week">Погода на неделю</string>
+    <string name="enter_the_name_of_the_city">Введите название города</string>
+    <string name="current_location">Текущее местоположение</string>
+    <string name="default_city">Москва</string>
+    <string name="default_value">-</string>
+</resources>
