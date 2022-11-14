@@ -15,6 +15,8 @@ object Constants {
     const val DEFAULT_CITY = "Москва"
     const val DEFAULT_CITY_LAT = "55.833333"
     const val DEFAULT_CITY_LON = "37.616667"
+    const val DEFAULT_NUMBER_CITY_LAT = 55.833333
+    const val DEFAULT_NUMBER_CITY_LON = 37.616667
 
     const val PREF_CITY_LAT = "lat"
     const val PREF_CITY_LON = "lon"

@@ -15,7 +15,7 @@ class CityListRepository @Inject constructor(
 ) {
     val cityList: LiveData<List<CityEntity>> = cityListLocalDataSource.cityList
 
-    suspend fun loadCityCoordinates(geocode: String) {
+    suspend fun loadCityCoordinates(geocode: String): Result<Boolean> {
         when(val result = cityListRemoteDataSource.cityCoordinates(Constants.GEOCODE_MAPS_URL,
         Constants.GEOCODE_MAPS_KEY, geocode, Constants.GEOCODE_MAPS_FORMAT)) {
             is Result.Success -> {
@@ -35,14 +35,15 @@ class CityListRepository @Inject constructor(
                             )
                             cityListLocalDataSource.addCityEntityIntoDatabase(cityEntity)
                         }
+                        return Result.Success(true)
+                    } else {
+                        return Result.Error("Введены некоректные данные. Попробуйте еще раз")
                     }
-                    Result.Success(true)
-                } else {
-                    Result.Error(Constants.GENERIC_ERROR)
                 }
             }
-            else -> result as Result.Error
+            else -> return Result.Error(Constants.GENERIC_ERROR)
         }
+        return Result.Error(Constants.GENERIC_ERROR)
     }
 
     suspend fun deleteCityEntityFromDatabase(name: String): Result<String> {

@@ -59,9 +59,9 @@ class SplashActivity : AppCompatActivity() {
     private fun getLocation() {
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
-                val latitude =  location?.latitude
-                val longitude = location?.longitude
-                viewModel.setCoordinates(latitude.toString(), longitude.toString())
+                val latitude =  location?.latitude.toString()
+                val longitude = location?.longitude.toString()
+                viewModel.setCoordinates(latitude, longitude)
                 startMainScreen()
             }
     }

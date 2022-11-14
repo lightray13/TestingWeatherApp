@@ -29,7 +29,8 @@ class CityListViewModel @Inject constructor(private val repository: CityListRepo
     fun insertCityEntityToList(geocode: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _isLoading.postValue(true)
-            repository.loadCityCoordinates(geocode)
+            val result = repository.loadCityCoordinates(geocode)
+            if (result is Result.Error) _toastError.postValue(result.message)
             _isLoading.postValue(false)
         }
     }

@@ -13,7 +13,8 @@ class WeatherRepository @Inject constructor(
     private val preferenceStorage: SharedPreferenceStorage
 ) {
 
-    val mainWeather = weatherLocalDataSource.weatherEntityByLatAndLot(getLatitude().toDouble(), getLongitude().toDouble())
+    val mainWeather = weatherLocalDataSource.weatherEntityByLatAndLot(getLatitude().toDoubleOrNull() ?: Constants.DEFAULT_NUMBER_CITY_LAT,
+        getLongitude().toDoubleOrNull() ?: Constants.DEFAULT_NUMBER_CITY_LON)
 
     suspend fun loadWeatherByLatAndLot() {
         when(val result = weatherRemoteDataSource.weatherEntityByLatAndLot(getLatitude(), getLongitude(), Constants.DEFAULT_LANGUAGE)) {
